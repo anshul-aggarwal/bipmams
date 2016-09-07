@@ -1,0 +1,188 @@
+create table organization(
+org_id int(6) primary key auto_increment,
+org_name varchar(40),
+org_addr varchar(40),
+org_area varchar(40),
+org_city varchar(30),
+org_pincode int(6),
+org_phone1 int(10),
+org_phone2 int(10),
+org_email varchar(60),
+org_fax bigint(12),
+org_TIN_no bigint(20));
+
+
+create table customer(
+cust_type varchar(10),
+cust_regdate date,
+org_id int(6) primary key,
+constraint fk_custorg foreign key (org_id) references organization(org_id));
+
+
+
+create table product 
+(
+prod_id int(5) primary key auto_increment,
+prod_name varchar(15) not null,
+prod_catgy varchar(15),
+prod_price decimal(6,2),
+prod_desc varchar(50)
+);
+
+
+create table order_
+(
+ord_id int(6) primary key auto_increment,
+ord_date date,
+ord_expdel date,
+ord_actdel date,
+org_id int(6),
+constraint fk_ordorg foreign key (org_id) references organization(org_id),
+prod_id int(5),
+constraint fk_ordprod foreign key (prod_id) references product(prod_id),
+ord_qty int(6));
+
+
+
+create table orderpayment(
+porder_id int(6) primary key auto_increment,
+porder_mode varchar(10),
+porder_amt decimal(10,2),
+porder_date date,
+porder_details varchar(50),
+ord_id int(6),
+constraint fk_opord foreign key (ord_id) references order_(ord_id));
+
+create table invoice(
+invoice_id int(6) auto_increment,
+invoice_date date,
+invoice_totprice decimal(10,2),
+ord_id int(6),
+constraint fk_invord foreign key (ord_id) references order_(ord_id),
+primary key(invoice_id, ord_id));
+
+
+create table salary(
+sal_jobcat varchar(15) primary key,
+sal_basic decimal(8,2),
+sal_da decimal(7,2),
+sal_hra decimal(7,2),
+sal_details varchar(50));
+
+
+create table department(
+dept_id int(6) primary key auto_increment,
+dept_name varchar(15),
+dept_intercom int(10));
+
+
+
+create table stock (
+stk_id int(5) auto_increment,
+stk_qty int(5),
+stk_regdate date,
+prod_id int(5),
+constraint fk_stkprod foreign key (prod_id) references product(prod_id),
+primary key(stk_id, prod_id));
+
+
+create table rawmaterial (
+mat_id int(5) primary key auto_increment,
+mat_name varchar(20),
+mat_desc varchar(50)
+);
+
+
+
+create table purchaseraw(
+pur_id int(5) primary key auto_increment,
+pur_rate decimal(7,2),
+pur_qty decimal(5),
+pur_date date,
+pur_details varchar(60)
+);
+
+
+
+
+create table supplier (
+sup_accno bigint(20),
+sup_type varchar(15),
+org_id int(6) primary key,
+constraint fk_suporg foreign key (org_id) references organization(org_id)
+);
+
+
+
+
+create table employee
+(
+emp_id int(6) primary key auto_increment,
+emp_name varchar(32),
+emp_accno bigint(16),
+emp_jobtitle varchar(15),
+emp_phno1 int(10),
+emp_phno2 int(10),
+emp_dob date,
+emp_addr varchar(40),
+emp_area varchar(40),
+emp_city varchar(30),
+emp_pincode int(6),
+dept_id int(6),
+constraint fk_empdept foreign key (dept_id) references department(dept_id),
+sal_jobcat varchar(15),
+constraint fk_empsalcat foreign key (sal_jobcat) references salary(sal_jobcat));
+
+
+create table manufworker
+(
+w_govtid varchar(60) primary key,
+w_bonus int(5),
+w_insurance varchar(50),
+emp_id int(6),
+constraint fk_manufemp foreign key (emp_id) references employee(emp_id));
+
+
+create table management(
+m_panno bigint(15) primary key,
+m_bonus int(5),
+m_insurance varchar(50),
+emp_id int(6),
+constraint fk_mgmtemp foreign key (emp_id) references employee(emp_id));
+
+
+
+create table intpursup(
+pur_id int(5),
+constraint fk_ipspur foreign key (pur_id) references purchaseraw(pur_id),
+mat_id int(5),
+constraint fk_ipsmat foreign key (mat_id) references rawmaterial(mat_id),
+org_id int(6),
+constraint fk_ipsorg foreign key (org_id) references organization(org_id),
+primary key(org_id,pur_id));
+
+
+create table intrawpro(
+prod_id int(5),
+constraint fk_irpprod foreign key (prod_id) references product(prod_id),
+mat_id int(5),
+constraint fk_irpmat foreign key (mat_id) references rawmaterial(mat_id),
+primary key(mat_id,prod_id));
+
+
+create table intrawdept(
+dept_id int(6),
+constraint fk_irddept foreign key (dept_id) references department(dept_id),
+mat_id int(5),
+constraint fk_irdmat foreign key (mat_id) references rawmaterial(mat_id),
+primary key(mat_id,dept_id));
+
+
+create table payment(
+emp_id int(6),
+constraint fk_payemp foreign key (emp_id) references employee(emp_id),
+pay_id int(5) primary key auto_increment,
+pay decimal(10,2),
+pay_mode varchar(10),
+pay_date date,
+pay_details varchar(60));

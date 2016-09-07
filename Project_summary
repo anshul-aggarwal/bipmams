@@ -1,0 +1,36 @@
+Project Summary
+
+BIPMAMS is a database system specifically designed to be implemented in a bicycle parts manufacturing facility to store and organize customer data, sales data, raw-material data, stock details, employee data, etc. which can be appropriately used to aid in decision making so as to streamline the production process, reduce costs and increase profits. With the focus on the huge Bicycle manufacturing industry of Ludhiana, Punjab bogged down by the age old file management systems in use at such facilities, this project aims to alleviate the problem by developing a custom-designed system that can fulfil the needs of the managers at such organizations, while providing benefits like speed and reliability at a low cost. 
+
+The system designed has the ability to Create, Read, Update and Delete (CRUD) critical data as per the requirements of the industry. The functionality of the system can be broadly classified into 4 categories, as:
+•	Employee Management
+•	Product and Inventory Control
+•	Business Administration
+•	Order Processing
+
+The project was done by collaborating directly with the industry (primarily CROWN CYCLES LTD., LUDHIANA) with inputs from other companies.
+
+
+Salient Features
+
+•	SHA-512 encrypted Password Authentication System
+•	Responsive and Fluid design
+•	Faster Data Access
+•	Smart Forms – Prevent errors while filling forms with Form Validation
+•	Easier backup.
+
+Languages/Tools used
+
+The backend for the system uses MySQL, for easy data access, control and backup.
+The frontend has been designed using HTML5/CSS3/JS such that the end result is a responsive, fast and secure application combined with the convenience of using and maintaining a web browser. The application runs well on all major web browsers, including, but not limited to:
+•	Microsoft Internet Explorer
+•	Google Chrome
+•	Mozilla Firefox
+•	Microsoft Edge
+
+
+Need of the Project
+
+Over the years, the Bicycle Parts manufacturing industry of Ludhiana has used a file-system based software to manage its data. The source of this system is a local software vendor who enjoys a complete monopoly over the market. The system currently in use has not been updated for years, has serious security flaws, and is slow and unreliable. But it is in use just because of the lack of an alternative.
+
+BIPMAMS aims to change this scenario, by introducing a more efficient and effective system to manage data. It employs a SQL based system, providing better, faster data access, easier and safer backups, larger data pools, etc., to bring the technology at par with today’s needs of the industry. 
